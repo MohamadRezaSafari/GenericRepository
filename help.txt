@@ -1,0 +1,9 @@
+services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+private IGenericRepository<Cities> cityRepository;
+public HomeController(IGenericRepository<Cities> cityRepository)
+{
+    this.cityRepository = cityRepository;
+}
+cityRepository.ExecWithStoreProcedure("GetCityList")
